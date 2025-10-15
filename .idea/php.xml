@@ -207,9 +207,20 @@
       <path value="$PROJECT_DIR$/doctor-appointment-app-4b/vendor/symfony/string" />
       <path value="$PROJECT_DIR$/doctor-appointment-app-4b/vendor/laravel/fortify" />
       <path value="$PROJECT_DIR$/doctor-appointment-app-4b/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/doctor-appointment-app-4b/vendor/wireui/heroicons" />
+      <path value="$PROJECT_DIR$/doctor-appointment-app-4b/vendor/wireui/wireui" />
+      <path value="$PROJECT_DIR$/doctor-appointment-app-4b/vendor/blade-ui-kit/blade-icons" />
+      <path value="$PROJECT_DIR$/doctor-appointment-app-4b/vendor/rappasoft/laravel-livewire-tables" />
+      <path value="$PROJECT_DIR$/doctor-appointment-app-4b/vendor/blade-ui-kit/blade-heroicons" />
+      <path value="$PROJECT_DIR$/doctor-appointment-app-4b/vendor/spatie/laravel-permission" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2">
     <option name="suggestChangeDefaultLanguageLevel" value="false" />
+  </component>
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/doctor-appointment-app-4b/phpunit.xml" custom_loader_path="$PROJECT_DIR$/doctor-appointment-app-4b/vendor/autoload.php" paratest_path="$PROJECT_DIR$/doctor-appointment-app-4b/vendor/bin/paratest_for_phpstorm" use_configuration_file="true" />
+    </phpunit_settings>
   </component>
 </project>
