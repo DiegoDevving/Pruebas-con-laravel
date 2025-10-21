@@ -15,3 +15,5 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+//Linea adicional porque no esta funcionando

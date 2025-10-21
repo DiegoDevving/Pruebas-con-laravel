@@ -8,13 +8,13 @@
             'active' => request()->routeIs('dashboard'),
         ],
         [
-            'header' => 'Hospital'
+            'header' => 'Management'
         ],
         [
-            'name' => 'Dashboard',
-            'icon' => 'fa-solid fa-gauge',
-            'href' => route('dashboard'),
-            'active' => false,
+            'name' => 'Roles y permisos',
+            'icon' => 'fa-solid fa-shield-halved',
+            'href' => route('adminroles.index'), //Por alguna razon no puedo usar admin.roles.index
+            'active' => request()->routeIs('admin.roles.*'),
             'submenu' => [
                 [
                     'name' => 'Products',
