@@ -4,8 +4,8 @@
         [
             'name' => 'Dashboard',
             'icon' => 'fa-solid fa-gauge',
-            'href' => route('dashboard'),
-            'active' => request()->routeIs('dashboard'),
+            'href' => route('admin.dashboard'), //deberia ser admin.dashboard
+            'active' => request()->routeIs('admin.dashboard'),
         ],
         [
             'header' => 'Management'
@@ -13,7 +13,7 @@
         [
             'name' => 'Roles y permisos',
             'icon' => 'fa-solid fa-shield-halved',
-            'href' => route('adminroles.index'), //Por alguna razon no puedo usar admin.roles.index
+            'href' => route('admin.roles.index'), //Por alguna razon no puedo usar admin.roles.index
             'active' => request()->routeIs('admin.roles.*'),
             'submenu' => [
                 [

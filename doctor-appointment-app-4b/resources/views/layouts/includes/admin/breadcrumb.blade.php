@@ -27,7 +27,7 @@
 
         {{-- El ultimo item apareceria resaltado --}}
         @if(count($breadcrumbs) > 1)
-            {{-- mt: margin top --}}
+            {{-- mt: margin top --}}-
             <h6 class="font-bold mt-2">
                 {{ $breadcrumbs[count($breadcrumbs) - 1]['name'] }}
             </h6>

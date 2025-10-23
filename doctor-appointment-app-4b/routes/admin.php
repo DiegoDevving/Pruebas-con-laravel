@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function(){
     return view('admin.dashboard') ;
-})->name('dashboard');
+})->name('dashboard'); //Modificado para arreglar las rutas admin, notas personales diego
 
 //Gestion de roles
 Route::resource('roles', RoleController::class);

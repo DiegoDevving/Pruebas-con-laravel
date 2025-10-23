@@ -1,11 +1,11 @@
 <x-admin-layout :breadcrumbs="[
     [
     'name' => 'Dashboard',
-    'href' => route('dashboard'),
+    'href' => route('admin.dashboard'), //Deberia ser admin.dashboard
     ],
     [
     'name' => 'Sid',
-    'href' => route('dashboard'),
+    'href' => route('admin.dashboard'), //Deberia ser admin.dashboard
     ],
     [
     'name' => 'Verstappen',
