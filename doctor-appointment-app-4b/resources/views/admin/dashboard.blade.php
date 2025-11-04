@@ -13,4 +13,4 @@
 
 ]">
     Hola desde admin
-</x-admin-layout:>
+</x-admin-layout>

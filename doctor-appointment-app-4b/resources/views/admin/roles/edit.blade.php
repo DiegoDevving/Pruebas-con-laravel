@@ -3,11 +3,14 @@
     :breadcrumbs="[
         [
             'name' => 'Dashboard',
-            'route' => route('admin.dashboard'), //Deberia ser admin.dashboard
+            'href' => route('admin.dashboard'), //Deberia ser admin.dashboard
         ],
         [
             'name' => 'Roles',
-
-    ],
+            'href' => route('admin.roles.index'),
+        ],
+        [
+            'name' => 'Editar',
+        ],
 ]">
 </x-admin-layout>

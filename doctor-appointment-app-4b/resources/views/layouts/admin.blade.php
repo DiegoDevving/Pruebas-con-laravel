@@ -31,8 +31,16 @@
 
     <div class="p-4 sm:ml-64">
         <!-- Margin top 14px -->
-        <div class="mt-14 flex-items-center justify-between w-full">
+        <div class="mt-14 flex items-center justify-between w-full">
+            {{-- Breadcrumbs --}}
             @include('layouts.includes.admin.breadcrumb')
+
+            {{-- Action slot --}}
+            @isset($action)
+                <div>
+                    {{ $action }}
+                </div>
+            @endisset
         </div>
 
         <!-- Page content goes here -->
