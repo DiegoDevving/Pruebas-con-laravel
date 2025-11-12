@@ -1,19 +1,32 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('/', '/admin' );
-//    return view('welcome');
-//});
+// Redirección inicial al panel de administración
+Route::redirect('/', '/admin');
 
+// Middleware de autenticación de Jetstream
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+
+    // Ruta del dashboard general
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-});
 
-//Linea adicional porque no esta funcionando
+    // 👉 Grupo de rutas del panel de administración
+    Route::prefix('admin')->name('admin.')->group(function () {
+
+        // Dashboard del panel de administración
+        Route::get('/', function () {
+            return view('admin.dashboard');
+        })->name('dashboard');
+
+        // Nueva ruta para el botón "Usuarios"
+        Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    });
+});

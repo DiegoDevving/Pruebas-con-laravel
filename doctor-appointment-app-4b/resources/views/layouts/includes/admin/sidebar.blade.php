@@ -15,23 +15,14 @@
             'icon' => 'fa-solid fa-shield-halved',
             'href' => route('admin.roles.index'), //Por alguna razon no puedo usar admin.roles.index
             'active' => request()->routeIs('admin.roles.*'),
-            'submenu' => [
-                [
-                    'name' => 'Products',
-                    'href' => '#',
-                    'active' => false
-                ],
-                [
-                    'name' => 'Billing',
-                    'href' => '#',
-                    'active' => false
-                ],
-                [
-                    'name' => 'Invoice',
-                    'href' => '#',
-                    'active' => false
-                ],
-            ],
+
+        ],
+
+        [
+            'name' => 'Usuarios',
+            'icon' => 'fa-solid fa-users', // ícono Font Awesome
+            'href' => route('admin.users.index'), // Ajusta según tu ruta real
+            'active' => request()->routeIs('admin.users.*'),
         ],
     ];
 @endphp
