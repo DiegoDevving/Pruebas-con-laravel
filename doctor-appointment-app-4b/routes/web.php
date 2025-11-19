@@ -26,7 +26,7 @@ Route::middleware([
             return view('admin.dashboard');
         })->name('dashboard');
 
-        // Nueva ruta para el botón "Usuarios"
-        Route::get('/users', [UserController::class, 'index'])->name('users.index');
+        // CRUD completo de usuarios
+        Route::resource('users', UserController::class);
     });
-});
+    });
