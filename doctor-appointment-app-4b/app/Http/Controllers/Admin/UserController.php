@@ -62,49 +62,46 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Role $role)
+    public function edit(User $user)
     {
-        /** Restrigir la accion para los primeros 4 roles fijos */
-        if ($role->id <=4){
-            session()->flash('swal',
-                [
-                    'icon' => 'error',
-                    'title' => 'Error',
-                    'text' => 'No puedes editar este rol.'
-                ]);
-            return redirect()->route('admin.roles.index');
-        }
-        return view('admin.roles.edit', compact('role'));
+        $roles = Role::all();
+        return view('admin.users.edit', compact('user','roles'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, User $user)
     {
-        /**Validar que se inserte bien */
-        $request->validate(['name' => 'required|unique:roles,name,' . $role->id]);
-
-        /** SI el campo no cambio, no actualices */
-        if($role->name === $request->name){
-            session()->flash('swal',
-                [
-                    'icon' => 'info',
-                    'title' => 'Sin cambios',
-                    'text' => 'No se detectaron modificaciones.'
-                ]);
-            /** redireccion al mismo lugar */
-            return redirect()->route('admin.roles.edit', $role);
-        }
-        /** Si pasa la validacion, editara el rol */
-        $role->update(['name'=> $request->name]);
-
-        /** Variable de un solo uso para alerta */
-        return redirect()->route('admin.roles.index')->with('swal', [
-            'icon' => 'success',
-            'title' => 'Rol actualizado correctamente',
-            'text' => 'El rol ha sido actualizado exitosamente'
+        $data = $request->validate([
+            'name' => 'required|string|min:3|max:255',
+            'email' => 'required|string|email|unique:users,email,' . $user->id,
+            'id_number' => 'required|string|min:5|max:20|regex:/^[A-Za-z0-9\-]+$/|unique:users,id_number,' . $user->id,
+            'phone' => 'required|digits_between:7,15',
+            'address' => 'required|string|min:3|max:255',
+            'role_id' => 'required|exists:roles,id',
+            // Se recomienda validar el password aunque sea opcional
+            'password' => 'nullable|string|min:8|confirmed',
         ]);
+
+        $user->update($data);
+
+        // Corregido el paréntesis y el nombre de la función bcrypt
+        if ($request->filled('password')) {
+            $user->password = bcrypt($request->password);
+            $user->save();
+        }
+
+        // Usar syncRoles es más limpio si usas el paquete Spatie
+        $user->syncRoles($data['role_id']);
+
+        session()->flash('swal', [
+            'icon' => 'success',
+            'title' => 'Usuario actualizado',
+            'text' => 'El usuario ha sido actualizado exitosamente'
+        ]);
+
+        return redirect()->route('admin.users.edit', $user)->with('success', 'User updated success');
     }
 
     /**
