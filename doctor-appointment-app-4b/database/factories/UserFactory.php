@@ -36,6 +36,11 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'profile_photo_path' => null,
             'current_team_id' => null,
+
+            // Nuevos campos agregados
+            'id_number' => strtoupper(fake()->bothify('ID-######')),
+            'phone' => fake()->numerify('9999999999'),
+            'address' => fake()->streetAddress(),
         ];
     }
 

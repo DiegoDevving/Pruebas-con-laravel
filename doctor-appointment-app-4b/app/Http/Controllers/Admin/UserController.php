@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User; // si usas el modelo por defecto
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -107,31 +108,31 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Role $role)
+    public function destroy(User $user)
     {
-        /** Restrigir la accion para los primeros 4 roles fijos */
-        if ($role->id <=4){
-            session()->flash('swal',
-                [
-                    'icon' => 'error',
-                    'title' => 'Error',
-                    'text' => 'No puedes eliminar este rol.'
-                ]);
-            return redirect()->route('admin.roles.index');
+        //No permitir que el usuario logeado se borre a si mismo
+        if (Auth::id() == $user->id) {
+            session()->flash('swal', [
+                'icon' => 'error',
+                'title' => 'Error',
+                'text' => 'No puedes borrarte a ti mismo',
+            ]);
+            abort(403, 'No puedes borrar tu propio usuario');
         }
 
-        /** Borrar el elemento */
-        $role->delete();
+        //Eliminar roles asociados a un usuario( tambien se borran de la tabla de roles)
+        $user->roles()->detach();
 
-        /** Alerta */
-        session()->flash('swal',
-            [
-                'icon' => 'success',
-                'title' => 'Role eliminado correctamente',
-                'text' => 'El rol ha sido eliminado exitosamente.'
-            ]);
+        //Eliminar el usuario
+        $user->delete();
 
-        /** redireccion al mismo lugar */
-        return redirect()->route('admin.roles.index');
+        session()->flash('swal', [
+            'icon' => 'success',
+            'title' => 'Usuario eliminado',
+            'text' => "El usuario ha sido eliminado exitosamente"
+        ]);
+
+        return redirect()->route('admin.users.index');
+
     }
 }
