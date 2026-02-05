@@ -48,6 +48,13 @@ class UserController extends Controller
             'text' => 'El usuario ha sido creado exitosamente'
         ]);
 
+        //Si el usuario creado es un paciente, envia el modulo pacientes
+        if($user::roles('Paciente')){
+            //Creamos el registro para un paciente
+            $patient = $user->patient()->create([]);
+            return redirect()->route('admin.patients.edit', $patient);
+        }
+
         return redirect()->route('admin.users.index')->with('success', 'User created successfully');
 
     }
@@ -87,13 +94,11 @@ class UserController extends Controller
 
         $user->update($data);
 
-        // Corregido el paréntesis y el nombre de la función bcrypt
         if ($request->filled('password')) {
             $user->password = bcrypt($request->password);
             $user->save();
         }
 
-        // Usar syncRoles es más limpio si usas el paquete Spatie
         $user->syncRoles($data['role_id']);
 
         session()->flash('swal', [

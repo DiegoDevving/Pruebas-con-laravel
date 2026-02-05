@@ -24,6 +24,13 @@
             'href' => route('admin.users.index'), // Ajusta según tu ruta real
             'active' => request()->routeIs('admin.users.*'),
         ],
+
+                [
+            'name' => 'Pacientes',
+            'icon' => 'fa-solid fa-user-injured', // ícono Font Awesome
+            'href' => route('admin.patients.index'), // Ajusta según tu ruta real
+            'active' => request()->routeIs('admin.patients.*'),
+        ],
     ];
 @endphp
 

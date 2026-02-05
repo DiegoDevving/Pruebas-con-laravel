@@ -39,7 +39,7 @@ class UserFactory extends Factory
 
             // Nuevos campos agregados
             'id_number' => strtoupper(fake()->bothify('ID-######')),
-            'phone' => fake()->numerify('9999999999'),
+            'phone' => fake()->unique()->numerify('##########'),// campo editado
             'address' => fake()->streetAddress(),
         ];
     }
