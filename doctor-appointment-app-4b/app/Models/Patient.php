@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Patient extends Model
 {
     protected $fillable = [
+        'user_id',             // ⚠️ OBLIGATORIO: Si no lo pones, no se guardará el vínculo
+        'blood_type_id', // ⚠️ OBLIGATORIO: Para poder asignar el tipo de sangre
+
         'allergies',
         'chronic_conditions',
         'surgical_history',
@@ -18,7 +21,7 @@ class Patient extends Model
     ];
 
     //Relacion uno a uno inversa
-    public function patient(){
+    public function user(){
         return$this->belongsTo(User::class);
     }
 

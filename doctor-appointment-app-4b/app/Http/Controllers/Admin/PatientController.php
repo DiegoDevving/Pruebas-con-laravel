@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bloodtype;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 
@@ -45,7 +46,8 @@ class PatientController extends Controller
      */
     public function edit(Patient $patient)
     {
-        return view('admin.patients.edit', compact('patient'));
+        $bloodTypes = BloodType::all();
+        return view('admin.patients.edit', compact('patient', 'bloodTypes'));
     }
 
     /**
@@ -53,7 +55,26 @@ class PatientController extends Controller
      */
     public function update(Request $request, Patient $patient)
     {
-        //
+        $data = $request->validate([
+            'blood_type_id' => 'nullable|exists:blood_types,id',
+            'allergies' => 'nullable|string|max:255|min:3',
+            'chronic_conditions' => 'nullable|string|max:255|min:3',
+            'surgical_history' => 'nullable|string|max:255|min:3',
+            'family_history' => 'nullable|string|max:255|min:3',
+            'observations' => 'nullable|string|max:255|min:3',
+            'emergency_contact_name' => 'nullable|string|max:255|min:3',
+            'emergency_contact_phone' => ['nullable','string','max:12','min:10','regex:/^([0-9\s\-\+\(\)]*)$/'],
+            'emergency_contact_relationship' => 'nullable|string|max:50|min:3',
+        ]);
+        $patient->update($data);
+
+        session()->flash('swal',[
+            'icon' => 'success',
+            'title' => 'Paciente actualizado',
+            'text' => 'El paciente ha sido actualizado exitosamente',
+        ]);
+
+        return redirect()->route('admin.patients.edit', $patient)->with('success', 'El paciente se actualizo correctamente');
     }
 
     /**
