@@ -11,7 +11,7 @@ class Bloodtype extends Model
         return $this->hasMany(Patient::class);
     }
 
-    // ESTA LÍNEA ES LA CLAVE:
+    // Extra mio
     protected $table = 'blood_types';
 
     protected $fillable = ['name'];

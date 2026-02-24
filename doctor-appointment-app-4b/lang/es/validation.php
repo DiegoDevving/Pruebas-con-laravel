@@ -291,6 +291,7 @@ return [
         'emergency_contact_name' => 'nombre del contacto de emergencia',
         'emergency_contact_phone' => 'telefono del contacto de emergencia',
         'emergency_contact_relationship' => 'Parentesco del contacto',
+        'medical_license_number' => 'número de licencia médica'
 
 
 

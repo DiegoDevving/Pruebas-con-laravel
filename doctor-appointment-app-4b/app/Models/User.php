@@ -74,4 +74,10 @@ class User extends Authenticatable
     public function patient(){
         return$this->hasOne(Patient::class);
     }
+
+    // Relación: Un usuario puede tener un perfil de doctor
+    public function doctor()
+    {
+        return $this->hasOne(Doctor::class);
+    }
 }

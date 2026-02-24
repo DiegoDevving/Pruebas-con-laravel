@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
         $this -> call([
             BloodTypeSeeder::Class,
             RoleSeeder::Class,
-            UserSeeder::Class
+            UserSeeder::Class,
+            SpecialtySeeder::Class,
         ]);
 
     }

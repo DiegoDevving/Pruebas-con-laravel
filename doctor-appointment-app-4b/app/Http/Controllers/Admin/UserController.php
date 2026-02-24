@@ -42,6 +42,9 @@ class UserController extends Controller
         $user =User::create($data);
         $user->roles()->attach($data['role_id']);
 
+        // Buscamos el rol directamente para estar seguros del nombre
+        $roleName = \App\Models\Role::find($data['role_id'])->name;
+
         session()->flash('swal', [
             'icon' => 'success',
             'title' => 'Usuario creado',
@@ -49,14 +52,25 @@ class UserController extends Controller
         ]);
 
         //Si el usuario creado es un paciente, envia el modulo pacientes
-        if($user->roles('Paciente')){
-            //Creamos el registro para un paciente
+        // 4. Lógica de redirección y creación de perfiles específicos
+        if ($roleName == 'Paciente') {
             $patient = $user->patient()->create([]);
             return redirect()->route('admin.patients.edit', $patient->id);
         }
 
-        return redirect()->route('admin.users.index')->with('success', 'User created successfully');
+        if ($roleName == 'Doctor') {
+            // Creamos el registro en la tabla doctors
+            // speciality_id 1 por defecto (asegúrate que el ID 1 exista en especialidades)
+            $doctor = $user->doctor()->create([
+                'specialty_id' => null,
+                'medical_license_number' => null,
+                'biography' => null
+            ]);
+            return redirect()->route('admin.doctors.edit', $doctor->id);
+        }
 
+        // Si no es ninguno de los anteriores (ej. Admin), va al index de usuarios
+        return redirect()->route('admin.users.index');
     }
 
     /**

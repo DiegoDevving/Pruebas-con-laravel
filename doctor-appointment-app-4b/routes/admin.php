@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,3 +16,5 @@ Route::resource('roles', RoleController::class);
 //Gestion de pacientes
 Route::resource('patients', \App\Http\Controllers\Admin\PatientController::class);
 
+//Gestion de doctores
+Route::resource('doctors', DoctorController::class);
