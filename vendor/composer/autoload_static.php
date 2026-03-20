@@ -35,6 +35,7 @@ class ComposerStaticInit4101b09439480bab8fb557440250e712
         ),
         'T' => 
         array (
+            'Twilio\\' => 7,
             'Termwind\\' => 9,
         ),
         'S' => 
@@ -103,6 +104,10 @@ class ComposerStaticInit4101b09439480bab8fb557440250e712
         'voku\\' => 
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/src/voku',
+        ),
+        'Twilio\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/twilio/sdk/src/Twilio',
         ),
         'Termwind\\' => 
         array (
