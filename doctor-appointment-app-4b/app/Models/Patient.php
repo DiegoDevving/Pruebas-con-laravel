@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Patient extends Model
 {
+    use HasFactory, Notifiable;
+    
     protected $fillable = [
         'user_id',             // ⚠️ OBLIGATORIO: Si no lo pones, no se guardará el vínculo
         'blood_type_id', // ⚠️ OBLIGATORIO: Para poder asignar el tipo de sangre
