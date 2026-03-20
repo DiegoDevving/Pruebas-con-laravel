@@ -220,6 +220,7 @@
       <excludeFolder url="file://$MODULE_DIR$/doctor-appointment-app-4b/vendor/spatie/laravel-permission" />
       <excludeFolder url="file://$MODULE_DIR$/doctor-appointment-app-4b/vendor/wireui/heroicons" />
       <excludeFolder url="file://$MODULE_DIR$/doctor-appointment-app-4b/vendor/wireui/wireui" />
+      <excludeFolder url="file://$MODULE_DIR$/doctor-appointment-app-4b/vendor/twilio/sdk" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -213,6 +213,7 @@
       <path value="$PROJECT_DIR$/doctor-appointment-app-4b/vendor/rappasoft/laravel-livewire-tables" />
       <path value="$PROJECT_DIR$/doctor-appointment-app-4b/vendor/blade-ui-kit/blade-heroicons" />
       <path value="$PROJECT_DIR$/doctor-appointment-app-4b/vendor/spatie/laravel-permission" />
+      <path value="$PROJECT_DIR$/doctor-appointment-app-4b/vendor/twilio/sdk" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2">
